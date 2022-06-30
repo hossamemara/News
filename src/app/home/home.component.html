@@ -1,0 +1,55 @@
+
+<h1>Latest News</h1>
+  <ngx-spinner bdColor = "#000" size = "medium" color = "#fff" type = "line-scale-party" [fullScreen] = "true"><p style="color: white" ></p></ngx-spinner>
+<select class="form-control w-25 m-auto"
+   #selectList
+   [(ngModel)]="myDropDown" 
+  (ngModelChange)="onChangeofOptions($event)">
+  <option value="" selected disabled hidden>Select News Category</option>
+    <option *ngFor="let category of categories" value="{{category.id}}">         
+      {{category.name}}
+  </option>    
+</select>
+<div class="container my-5" *ngIf="categoryFilter.length>0;else notFound">
+    <div class="row text-center" >
+        <div class="col-md-4 my-2" *ngFor="let n of categoryFilter;let i =index">
+            
+            <h6 class="my-2">{{n.title}}</h6>
+            <a target="_blank" [routerLink]="['/newsdetails',n.id]">
+                <img   [src]="n.urlToImage" class="w-100 p-2 m-2" style="width:150px ;height: 250px;" />
+            </a>
+            
+            <a target="_blank" class="text-white" [routerLink]="['/newsdetails',n.id]"><p>{{n.description}}</p></a>
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+
+<ng-template #notFound>
+    <h2 class="text-center">No Data Found</h2>
+</ng-template>
+<ng-template #notFound2>
+    <h2 class="text-center">No Data Found</h2>
+</ng-template>
+
+
+<h1>Highlights Banner</h1>
+
+<div class="container my-5" *ngIf="categoryFilter.length>0;else notFound">
+    <div class="row text-center" >
+        <div class="col-md-4 my-2" *ngFor="let banner of banners;let i =index">
+            <a target="_blank" [routerLink]="['/newsdetails',banner.id]" class="text-white" ><p>{{banner.title}}</p></a>
+            <h6 class="my-2" >{{banner.brief}}</h6>
+            
+            
+            
+            
+        </div>
+        
+    </div>
+</div>
+
+
