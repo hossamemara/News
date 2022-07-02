@@ -1,0 +1,16 @@
+<ng-template #notFound>
+    <h2 class="text-center">No Data Found</h2>
+</ng-template>
+<div class="container my-5" *ngIf="favoriteNews.length>0;else notFound">
+    <div class="row text-center" >
+        <div class="col-md-4 my-2" *ngFor="let fn of favoriteNews;let i =index">
+            
+            <h6 class="my-2">{{fn.title}}</h6>
+            <a target="_blank" [routerLink]="['/newsdetails',fn.id]">
+                <img   [src]="fn.urlToImage" class="w-100 p-2 m-2" style="width:150px ;height: 250px;" />
+            </a>
+            
+            <a target="_blank" class="text-white" [routerLink]="['/newsdetails',fn.id]"><p>{{fn.description}}</p></a>
+    </div>
+</div>
+

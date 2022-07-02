@@ -21,7 +21,7 @@
             
             <a target="_blank" class="text-white" [routerLink]="['/newsdetails',n.id]"><p>{{n.description}}</p></a>
             
-            
+            <i class="fa-solid fa-heart fa-2x" (click)="addFav(n)"></i>
         </div>
         
     </div>
@@ -51,5 +51,7 @@
         
     </div>
 </div>
+
+
 
 

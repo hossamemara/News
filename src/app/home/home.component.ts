@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HomeService } from './homeservices/home.service';
 import { ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { NgxSpinnerService } from "ngx-spinner";
-
+import { FavoritesService } from '../favorites/favorites.service';
+var fav: any[] = []
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -10,6 +11,11 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class HomeComponent implements OnInit {
   flag:any;
+  favNews :object = {};
+  favNews2 :any[] = [];
+  favNews3 :any[] = [];
+
+  favNews_ :any;
 
   categoryFilter:any='';
   name = 'Angular 4';
@@ -107,22 +113,29 @@ export class HomeComponent implements OnInit {
   }
 
 
-
-  
- 
   banners:any []= [] ;
- news:any []= [] ; 
+news:any []= [] ; 
 
 
-  constructor(private _HomeService:HomeService,private _NgxSpinnerService:NgxSpinnerService) { 
-
-  
+  constructor(private _FavoritesService:FavoritesService,private _HomeService:HomeService,private _NgxSpinnerService:NgxSpinnerService) { 
 
   }
 
   
   
+  addFav(news:any)
+  {   debugger;
+   
+  
 
+    fav.push(news);
+    localStorage.setItem('favNews',JSON.stringify(fav));
+  } 
+    
+      
+  
+
+  
 
 getBanners()
 {
@@ -138,14 +151,21 @@ getBanners()
         console.error(error.message)
       },
 
-      ()=>
-      {
-        console.log('Done');
-      }
+     
     )
 }
-  ngOnInit(): void {
 
+
+
+
+  ngOnInit(): void {
+    debugger;
+    
+    if (localStorage.getItem("favNews")!= null) 
+    {
+      fav = JSON.parse(localStorage.getItem("favNews")|| '{}')
+    
+    }
     
 this.onChangeofOptions(null);
 this.getBanners()

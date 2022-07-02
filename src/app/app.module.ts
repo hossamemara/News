@@ -12,13 +12,15 @@ import { NotfoundComponent } from './notfound/notfound.component';
 import { NavComponent } from './nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NewsdetailsComponent } from './newsdetails/newsdetails.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     NotfoundComponent,
     NavComponent,
-    NewsdetailsComponent
+    NewsdetailsComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
